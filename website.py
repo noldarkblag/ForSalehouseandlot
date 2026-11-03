@@ -12,16 +12,9 @@ st.set_page_config(
 st.title("🏠 2-Storey Corner Lot Home for Sale")
 st.subheader("Bonifacio Village, Quezon City | High-Elevation & 100% Flood-Free")
 
-# Facade / Frontage Photo Display
-facade_path = "facade.jpg"
-
-if os.path.exists(facade_path):
-    st.image(facade_path, caption="Facade & Frontage - Bonifacio Village, QC", use_container_width=True)
-else:
-    st.info("💡 **Frontage / Facade Photo:** I-upload ang larawan sa ibaba o maglagay ng 'facade.jpg' sa folder.")
-    uploaded_facade = st.file_uploader("Upload Facade Photo", type=["jpg", "jpeg", "png"], key="facade_uploader")
-    if uploaded_facade:
-        st.image(uploaded_facade, caption="Facade & Frontage - Bonifacio Village, QC", use_container_width=True)
+# Display Facade Photo
+if os.path.exists("facade.jpg"):
+    st.image("facade.jpg", caption="Facade & Frontage - Bonifacio Village, QC", use_container_width=True)
 
 st.markdown("---")
 
@@ -31,18 +24,15 @@ col1, col2 = st.columns([1, 1])
 with col1:
     st.header("📸 Photo Gallery")
     
-    # Helper function para sa karagdagang larawan
-    def load_or_upload_image(file_name, label, key):
-        if os.path.exists(file_name):
-            st.image(file_name, caption=label, use_container_width=True)
-        else:
-            uploaded = st.file_uploader(f"Upload {label}", type=["jpg", "jpeg", "png"], key=key)
-            if uploaded:
-                st.image(uploaded, caption=label, use_container_width=True)
-
-    load_or_upload_image("living_room.jpg", "Spacious Living Room", "img_living")
-    load_or_upload_image("patio.jpg", "Relaxing Downstairs Patio", "img_patio")
-    load_or_upload_image("library.jpg", "Family Area with Mini Library", "img_library")
+    # Direktang ipapakita ang mga larawan kung umiiral ang file
+    if os.path.exists("living_room.jpg"):
+        st.image("living_room.jpg", caption="Spacious Living Room", use_container_width=True)
+        
+    if os.path.exists("patio.jpg"):
+        st.image("patio.jpg", caption="Relaxing Downstairs Patio", use_container_width=True)
+        
+    if os.path.exists("library.jpg"):
+        st.image("library.jpg", caption="Family Area with Mini Library", use_container_width=True)
 
 with col2:
     st.header("✨ Property Overview")
